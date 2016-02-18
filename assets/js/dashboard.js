@@ -1,6 +1,15 @@
 $(document).ready(function(){
   var generateChart = {
     gender: function(data){
+      var male = 0, female = 0;
+      for(var i = 0; i < data.length; i++){
+        console.log(data[i].person.gender);
+        if(data.length === male){
+          male++;
+        } else {
+          female++;
+        }
+      } 
 
       var chartData = [
         {
@@ -16,7 +25,8 @@ $(document).ready(function(){
           label: "Female"
         }
       ];
-
+      // var ctx = $('.chart-gender canvas').get(0).getContext("2d");
+      // var pieChart = new Chart(ctx[0]).Pie(chartData);
     },
     orderTotal: function(data){
 
@@ -104,6 +114,11 @@ $(document).ready(function(){
     }
   };
 
-  // Delete this comment: Perhaps this is where we should make our GET request?
+  $.get('https://www.batchacademy.com/api/wdfne/dummy/intellidash', function(response){
+    generateChart.gender(response);
+    generateChart.orderTotal(response); 
+    generateChart.orderCategory(response); 
+    generateChart.orderTimeline(response); 
+  }) 
 
 });
