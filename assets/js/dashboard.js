@@ -4,32 +4,45 @@ $(document).ready(function(){
       var male = 0, female = 0;
       for(var i = 0; i < data.length; i++){
         console.log(data[i].person.gender);
-        if(data.length === male){
-          male++;
-        } else {
-          female++;
-        }
+          if(data[i].person.gender === 'M'){
+            male++;
+          } else {
+            female++;
+          }
       } 
 
       var chartData = [
         {
-          value: 0 /* How do we get this value? */,
+          value: male,
           color: "rgb(0,127,255)",
           highlight: "rgba(0,127,255,0.5)",
           label: "Male"
         },
         {
-          value: 0 /* How do we get this value? */,
+          value: female,
           color: "rgb(255,67,101)",
           highlight: "rgba(255,67,101,0.5)",
           label: "Female"
         }
       ];
-      // var ctx = $('.chart-gender canvas').get(0).getContext("2d");
-      // var pieChart = new Chart(ctx[0]).Pie(chartData);
+      var ctx = $('.gender canvas').get(0).getContext("2d");
+      var pieChart = new Chart(ctx).Pie(chartData);
     },
     orderTotal: function(data){
+      for(var i = 0; i < data.length; i++){
+        console.log(data[i].order.total);
+          if(data[i].order.total <= 14){
+            data[i].order.total++;
+          } else if(data[i].order.total <= 49){
 
+          } else if(data[i].order.total <= 99){
+
+          } else if(data[i].order.total <= 199){
+
+          } else if(data[i].order.total <= 299){
+
+          }
+      }
       var ranges = {
         '0-14': 0,
         '15-49': 0,
@@ -39,7 +52,7 @@ $(document).ready(function(){
       };
 
       var chartData = {
-        labels: [] /* What should these labels be? */ ,
+        labels: [ranges] /* What should these labels be? */ ,
         datasets: [
           {
             fillColor: "rgba(0,127,255,0.4)",
@@ -50,7 +63,8 @@ $(document).ready(function(){
           }
         ]
       };
-
+      var ctx = $('.order-total canvas').get(0).getContext("2d");
+      var barChart = new Chart(ctx).Bar(chartData);
     },
     orderCategory: function(data){
 
