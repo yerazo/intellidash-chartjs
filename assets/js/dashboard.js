@@ -105,9 +105,24 @@ $(document).ready(function(){
           label: 'Jacket'
         }
       };
+
       for(var i = 0; i < data.length; i++){
-        console.log(data[i].order.category);
+        // console.log(data[i].order.category);
+        if(data[i].order.category === 'belt'){
+          categories.belt.value++;
+        } else if (data[i].order.category === 'shirt'){
+          categories.shirt.value++;
+        } else if (data[i].order.category === 'pant'){
+          categories.pant.value++;
+        } else if (data[i].order.category === 'footwear'){
+          categories.footwear.value++;
+        } else if (data[i].order.category === 'jewelry'){
+          categories.jewelry.value++;
+        } else {
+          categories.jacket.value++;
+        }
       }
+      
       var ctx = $('.order-category canvas').get(0).getContext("2d");
       var pieChart = new Chart(ctx).Pie(categories);
     },
