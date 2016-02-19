@@ -3,7 +3,7 @@ $(document).ready(function(){
     gender: function(data){
       var male = 0, female = 0;
       for(var i = 0; i < data.length; i++){
-        console.log(data[i].person.gender);
+        // console.log(data[i].person.gender);
           if(data[i].person.gender === 'M'){
             male++;
           } else {
@@ -29,20 +29,6 @@ $(document).ready(function(){
       var pieChart = new Chart(ctx).Pie(chartData);
     },
     orderTotal: function(data){
-      for(var i = 0; i < data.length; i++){
-        console.log(data[i].order.total);
-          if(data[i].order.total <= 14){
-            data[i].order.total++;
-          } else if(data[i].order.total <= 49){
-
-          } else if(data[i].order.total <= 99){
-
-          } else if(data[i].order.total <= 199){
-
-          } else if(data[i].order.total <= 299){
-
-          }
-      }
       var ranges = {
         '0-14': 0,
         '15-49': 0,
@@ -50,16 +36,30 @@ $(document).ready(function(){
         '100-199': 0,
         '200-299': 0
       };
+      for(var i = 0; i < data.length; i++){
+        // console.log(data[i].order.total);
+          if(data[i].order.total <= 14){
+            ranges['0-14']++;
+          } else if(data[i].order.total <= 49){
+            ranges['15-49']++;
+          } else if(data[i].order.total <= 99){
+            ranges['50-99']++;
+          } else if(data[i].order.total <= 199){
+            ranges['100-199']++;
+          } else {(data[i].order.total <= 299)
+            ranges['200-299']++;
+          }
+      }
 
       var chartData = {
-        labels: [ranges] /* What should these labels be? */ ,
+        labels: ["0-14", "15-49", "50-99", "100-199", "200-299"] /* What should these labels be? */ ,
         datasets: [
           {
             fillColor: "rgba(0,127,255,0.4)",
             strokeColor: "rgba(0,127,255,0.8)",
             highlightFill: "rgba(0,127,255,0.8)",
             highlightStroke: "rgba(0,127,255,0.4)",
-            data: [] /* How do we organize this data ? */
+            data: [ranges['0-14'], ranges['15-49'], ranges['50-99'], ranges['100-199'], ranges['200-299']] /* How do we organize this data ? */
           }
         ]
       };
@@ -67,7 +67,6 @@ $(document).ready(function(){
       var barChart = new Chart(ctx).Bar(chartData);
     },
     orderCategory: function(data){
-
       var categories = {
         belt: {
           value: 0,
@@ -106,7 +105,11 @@ $(document).ready(function(){
           label: 'Jacket'
         }
       };
-
+      for(var i = 0; i < data.length; i++){
+        console.log(data[i].order.category);
+      }
+      var ctx = $('.order-category canvas').get(0).getContext("2d");
+      var pieChart = new Chart(ctx).Pie(categories);
     },
     orderTimeline: function(data){
 
