@@ -128,14 +128,20 @@ $(document).ready(function(){
     },
     orderTimeline: function(data){
 
-      var quarters = [
-        {
-          Q1: 0, 
-          Q2: 0, 
-          Q3: 0, 
-          Q4: 0
+      var quarters = [0, 0, 0, 0];
+      for(var i = 0; i < data.length; i++){
+        // console.log(data[i].order.date);
+        if(data[i].order.date >= '1/1/2015' && data[i].order.date <= '3/31/2015'){
+          quarters[0]++;
+          console.log(quarters[0]);
+        } else if (data[i].order.date >= '4/1/2015' && data[i].order.date <= '6/30/2015'){
+          quarters[1]++;
+        } else if (data[i].order.date >= '7/1/2015' && data[i].order.date <= '9/30/2015'){
+          quarters[2]++;
+        } else {
+          quarters[3]++;
         }
-      ];
+      }
       
       var chartData = {
         labels: ["Q1", "Q2", "Q3", "Q4"] /* What should these labels be? */ ,
@@ -147,24 +153,10 @@ $(document).ready(function(){
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(0,127,255,1)",
-            data: [quarters['Q1'], quarters['Q2'], quarters['Q3'], quarters['Q4']] /* How do we organize this data? */
+            data: [quarters[0], quarters[1], quarters[2], quarters[3]] /* How do we organize this data? */
           }
         ]
       };
-
-      for(var i = 0; i < data.length; i++){
-        // console.log(data[i].order.date);
-        if(data[i].order.date >= '1/1/2015' && data[i].order.date <= '3/31/2015'){
-          quarters.Q1++;
-          console.log(quarters.Q1);
-        } else if (data[i].order.date >= '4/1/2015' && data[i].order.date <= '6/30/2015'){
-          quarters.Q2++;
-        } else if (data[i].order.date >= '7/1/2015' && data[i].order.date <= '9/30/2015'){
-          quarters.Q3++;
-        } else {
-          quarters.Q4++;
-        }
-      }
 
       var ctx = $('.order-timeline canvas').get(0).getContext("2d");
       var lineChart = new Chart(ctx).Line(chartData);
