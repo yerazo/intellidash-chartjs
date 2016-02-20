@@ -122,14 +122,14 @@ $(document).ready(function(){
           categories.jacket.value++;
         }
       }
-      
+
       var ctx = $('.order-category canvas').get(0).getContext("2d");
       var pieChart = new Chart(ctx).Pie(categories);
     },
     orderTimeline: function(data){
 
       var chartData = {
-        labels: [] /* What should these labels be? */ ,
+        labels: ["Q1", "Q2", "Q3", "Q4"] /* What should these labels be? */ ,
         datasets: [
           {
             fillColor: "rgba(0,127,255,0.2)",
@@ -143,6 +143,8 @@ $(document).ready(function(){
         ]
       };
 
+      var ctx = $('.order-timeline canvas').get(0).getContext("2d");
+      var lineChart = new Chart(ctx).Line(chartData);
     }
   };
 
