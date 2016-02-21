@@ -4,19 +4,13 @@ $(document).ready(function(){
 			console.log(data[i]);
 			var newTableRow = $('<tr/>');
 			var newTableData = $('<td/>');
+
+			$(newTableData, newTableRow).text(data[i].id + data[i].person + data[i].person.email + person.location.city + person.location.state + data[i].person.race + data[i].person.gender);
+
 			$(newTableRow).append(newTableData);
-
-			$(newTableData, newTableRow).text(data[i].id);
-			// $('<td/>', newTableRow).text(data[i].person);
-			$(newTableData, newTableRow).text(data[i].person.email);
-			$(newTableData, newTableRow).text(data[i].person.location.city);
-			$(newTableData, newTableRow).text(data[i].person.location.state);
-			$(newTableData, newTableRow).text(data[i].person.race);
-			$(newTableData, newTableRow).text(data[i].person.gender);
-
 			$('tbody').append(newTableRow);
 
 		}
-		// fixSidebar();
+		fixSidebar();
 	})
 });
