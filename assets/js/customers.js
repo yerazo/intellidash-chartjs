@@ -5,11 +5,12 @@ $(document).ready(function(){
 			var newTableRow = $('<tr/>');
 			var newTableData = $('<td/>');
 
-			$(newTableData, newTableRow).text(data[i].id + data[i].person + data[i].person.email + person.location.city + person.location.state + data[i].person.race + data[i].person.gender);
+			$(newTableData, newTableRow).text(data[i].id);
+			// $(newTableData, newTableRow).text(data[i].person); 
+			data[i].person.email
 
 			$(newTableRow).append(newTableData);
 			$('tbody').append(newTableRow);
-
 		}
 		fixSidebar();
 	})
