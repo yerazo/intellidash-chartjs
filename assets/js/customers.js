@@ -5,11 +5,7 @@ $(document).ready(function(){
 			var newTableRow = $('<tr/>');
 			var newTableData = $('<td/>');
 
-			$(newTableData, newTableRow).text(data[i].id);
-			// $(newTableData, newTableRow).text(data[i].person); 
-			data[i].person.email
-
-			$(newTableRow).append(newTableData);
+			$(newTableRow).append("<td>" + data[i].id, "<td>" + data[i].person.first_name + ' ' + data[i].person.last_name, "<td>" + data[i].person.email, "<td>" + data[i].person.location.city, "<td>" + data[i].person.location.state, "<td>" + data[i].person.race, "<td>" + data[i].person.gender);
 			$('tbody').append(newTableRow);
 		}
 		fixSidebar();
