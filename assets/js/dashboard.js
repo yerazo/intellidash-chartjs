@@ -37,22 +37,23 @@ $(document).ready(function(){
         '200-299': 0
       };
       for(var i = 0; i < data.length; i++){
-        // console.log(data[i].order.total);
-          if(data[i].order.total <= 14){
-            ranges['0-14']++;
-          } else if(data[i].order.total <= 49){
-            ranges['15-49']++;
-          } else if(data[i].order.total <= 99){
-            ranges['50-99']++;
-          } else if(data[i].order.total <= 199){
-            ranges['100-199']++;
-          } else {(data[i].order.total <= 299)
+        var total = Number(data[i].order.total);
+          if(total >= 200){
             ranges['200-299']++;
+          } else if(total >= 100){
+            ranges['100-199']++;
+          } else if(total >= 50){
+            ranges['50-99']++;
+          } else if(total >= 15){
+            ranges['15-49']++;
+          } else {
+            ranges['0-14']++;
           }
       }
+      console.log(ranges);
 
       var chartData = {
-        labels: ["0-14", "15-49", "50-99", "100-199", "200-299"] /* What should these labels be? */ ,
+        labels: ['$0-14', '$15-49', '$50-99', '$100-199', '$200-299'] /* What should these labels be? */ ,
         datasets: [
           {
             fillColor: "rgba(0,127,255,0.4)",
