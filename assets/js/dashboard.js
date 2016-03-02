@@ -132,16 +132,11 @@ $(document).ready(function(){
       var quarters = [0, 0, 0, 0];
       for(var i = 0; i < data.length; i++){
         // console.log(data[i].order.date);
-        if(data[i].order.date >= '1/1/2015' && data[i].order.date <= '3/31/2015'){
-          quarters[0]++;
-          console.log(quarters[0]);
-        } else if (data[i].order.date >= '4/1/2015' && data[i].order.date <= '6/30/2015'){
-          quarters[1]++;
-        } else if (data[i].order.date >= '7/1/2015' && data[i].order.date <= '9/30/2015'){
-          quarters[2]++;
-        } else {
-          quarters[3]++;
+        var month = Number(data[i].order.date.split('/')[0]);
+        if(month % 3 === 0){
+          month--;
         }
+          quarters[Math.floor(month / 3)]++;
       }
       
       var chartData = {
@@ -154,7 +149,7 @@ $(document).ready(function(){
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(0,127,255,1)",
-            data: [quarters[0], quarters[1], quarters[2], quarters[3]] /* How do we organize this data? */
+            data: quarters /* How do we organize this data? */
           }
         ]
       };
